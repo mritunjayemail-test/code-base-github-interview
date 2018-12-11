@@ -15,7 +15,7 @@
     <body>
         <div class="container">
             <div class="hero-unit">
-                <h1>Hello Congratulations...Mritunjay</h1>
+                <h1>Congratulations...Mritunjay</h1>
                 <p>Your Connection with database result is:.</p>
  
                 <?php 
