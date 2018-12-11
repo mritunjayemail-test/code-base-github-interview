@@ -28,31 +28,33 @@
                 $dbhandle = mysql_connect($hostname, $username, $password) or die("Unable to connect to MySQL"); 
                 echo "Connected to MySQL using username - $username, password - $password, host - $hostname<br>"; 
                 $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to MySQL DB - check the database name and try again."); 
-                
-                // Create connection
-$conn = new mysqli($hostname, $username, $password, $dbname);
+              // Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-// sql to create table
-$sql = "CREATE TABLE MyGuests (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-firstname VARCHAR(30) NOT NULL,
-lastname VARCHAR(30) NOT NULL,
-email VARCHAR(50),
-reg_date TIMESTAMP
-)";
+$sql = "INSERT INTO MyGuests (firstname, lastname, email)
+VALUES ('Mritunjay', 'Kumar', 'mritunjayemail@gmail.com')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Table MyGuests created successfully";
+    echo "New record created successfully";
 } else {
-    echo "Error creating table: " . $conn->error;
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-$conn->close();
+                $sql1 = "INSERT INTO MyGuests (firstname, lastname, email)
+VALUES ('Shaurya', 'Kumar', 'shauryakumar@goodboy.com')";
+
+if ($conn->query($sql1) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql1 . "<br>" . $conn->error;
+}
+
                 
+$conn->close();      
                 
                 ?>
             </div>
