@@ -21,7 +21,7 @@
                 <?php 
                 $username = "admin"; 
                 $password = "MyDBPass123"; 
-                $hostname = "mm1d1q0jw529s1k.cvkqavmqhnef.eu-west-1.rds.amazonaws.com"; 
+                $hostname = "mmhn9n0i7nmdn.cvkqavmqhnef.eu-west-1.rds.amazonaws.com"; 
                 $dbname = "MyDatabase";
 
                 //connection to the database
