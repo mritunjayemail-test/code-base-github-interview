@@ -35,9 +35,39 @@ $conn = new mysqli($hostname, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
+                
+// sql to create table
+$sql = "CREATE TABLE MyGuests (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+firstname VARCHAR(30) NOT NULL,
+lastname VARCHAR(30) NOT NULL,
+email VARCHAR(50),
+reg_date TIMESTAMP
+)";
 
-$sql = "SELECT id, firstname, lastname FROM MyGuests";
-$result = $conn->query($sql);
+if ($conn->query($sql) === TRUE) {
+    echo "Table MyGuests created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+                
+                
+$sql2 = "INSERT INTO MyGuests (firstname, lastname, email)
+VALUES ('Mritunjay', 'Kumar', 'mritunjayemail@gmail.com');";
+$sql2 .= "INSERT INTO MyGuests (firstname, lastname, email)
+VALUES ('Shaurya', 'Kumar', 'shaurya@goodboy.com');";
+$sql2 .= "INSERT INTO MyGuests (firstname, lastname, email)
+VALUES ('Rakhi', 'Prasad', 'rakhi@television.com')";
+
+if ($conn->multi_query($sql2) === TRUE) {
+    echo "New records created successfully";
+} else {
+    echo "Error: " . $sql2 . "<br>" . $conn->error;
+}                
+                
+
+$sql1 = "SELECT id, firstname, lastname FROM MyGuests";
+$result = $conn->query($sql1);
                 
  echo "<table class="table table-hover">"
  echo "<thead>"
