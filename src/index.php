@@ -28,6 +28,32 @@
                 $dbhandle = mysql_connect($hostname, $username, $password) or die("Unable to connect to MySQL"); 
                 echo "Connected to MySQL using username - $username, password - $password, host - $hostname<br>"; 
                 $selected = mysql_select_db("$dbname",$dbhandle)   or die("Unable to connect to MySQL DB - check the database name and try again."); 
+                
+                // Create connection
+$conn = new mysqli($hostname, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+// sql to create table
+$sql = "CREATE TABLE MyGuests (
+id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+firstname VARCHAR(30) NOT NULL,
+lastname VARCHAR(30) NOT NULL,
+email VARCHAR(50),
+reg_date TIMESTAMP
+)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table MyGuests created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+
+$conn->close();
+                
+                
                 ?>
             </div>
         </div>
