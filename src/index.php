@@ -38,15 +38,36 @@ if ($conn->connect_error) {
 
 $sql = "SELECT id, firstname, lastname FROM MyGuests";
 $result = $conn->query($sql);
+                
+ echo "<table class="table table-hover">"
+ echo "<thead>"
+ echo "<tr>"
+ echo "<th scope="col">#</th>"
+ echo "<th scope="col">First Name</th>"
+ echo "<th scope="col">Last Name</th>"
+ echo "</tr>"
+ echo "</thead>"
+ echo "<tbody>"      
 
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
         echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+    echo "<tr>"
+    echo "<th scope="row">" . $row["id"]. "</th>"
+    echo "<td>" . $row["firstname"]. "</td>"
+    echo "<td>" . $row["lastname"]. "</td>"
+    echo "</tr>"
+
+        
     }
 } else {
     echo "0 results";
 }
+                
+echo "</tbody>"
+echo "</table>"
+
 $conn->close();
                 ?>
             </div>
